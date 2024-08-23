@@ -6,6 +6,9 @@ import pickle
 # Load the dataset
 data = pd.read_csv('salaryData.csv')
 
+# Handle missing values by filling them with the mean of the column
+data.fillna(data.mean(), inplace=True)
+
 # Example preprocessing: Assuming 'Gender', 'Education Level', and 'Job Title' are categorical
 data['Gender'] = data['Gender'].map({'Male': 0, 'Female': 1})
 data['Education Level'] = data['Education Level'].astype('category').cat.codes

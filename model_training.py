@@ -6,8 +6,28 @@ import pickle
 # Load the dataset
 data = pd.read_csv('salaryData.csv')
 
-# Handle missing values by filling them with the mean of the column
-data.fillna(data.mean(), inplace=True)
+# Inspect the first few rows
+print("First few rows of the dataset:")
+print(data.head())
+
+# Check the shape of the dataset
+print("\nShape of the dataset:")
+print(data.shape)
+
+# Descriptive statistics of the dataset
+print("\nDescriptive statistics:")
+print(data.describe())
+
+# Check for missing values
+print("\nMissing values in each column:")
+print(data.isnull().sum())
+
+# Drop rows with missing values
+data = data.dropna()
+
+# Confirm no missing values remain
+print("\nMissing values after cleaning:")
+print(data.isnull().sum())
 
 # Example preprocessing: Assuming 'Gender', 'Education Level', and 'Job Title' are categorical
 data['Gender'] = data['Gender'].map({'Male': 0, 'Female': 1})
@@ -30,4 +50,3 @@ with open('model.pkl', 'wb') as file:
     pickle.dump(model, file)
 
 print("Model training complete and saved to model.pkl")
-
